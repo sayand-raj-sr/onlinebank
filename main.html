@@ -1,115 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="shortcut icon" href="https://t3.ftcdn.net/jpg/04/01/11/40/360_F_401114031_dmYBKsjAZfdv75mGTIKeVMREP3oxHR4l.jpg" type="image/x-icon">
-
-    <title>bank</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-        crossorigin="anonymous"></script>
-        <style>
-            body{
-                background: url("https://png.pngtree.com/thumb_back/fw800/background/20230518/pngtree-stack-of-credit-cards-on-a-dark-table-image_2582376.jpg");
-                 background-size: cover;
-            }
-        </style>
-       
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bank</title>
+  <link rel="shortcut icon" href="https://t3.ftcdn.net/jpg/04/01/11/40/360_F_401114031_dmYBKsjAZfdv75mGTIKeVMREP3oxHR4l.jpg" type="image/x-icon">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: url("https://png.pngtree.com/thumb_back/fw800/background/20230518/pngtree-stack-of-credit-cards-on-a-dark-table-image_2582376.jpg");
+      background-size: cover;
+    }
+    .box {
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 20px;
+      border-radius: 10px;
+    }
+  </style>
 </head>
 <body>
-    <!--nav  -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Federal Bank</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarScroll">
-      <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">pay</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Shop
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Invest</a>
-        </li>
-      </ul>
-      <form class="d-flex">
-        <a href="./index.html" class="btn btn-outline-success" type="submit">logout</a>
-      </form>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Federal Bank</a>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Pay</a></li>
+          <li class="nav-item"><a class="nav-link disabled">Invest</a></li>
+        </ul>
+        <a href="./index.html" class="btn btn-outline-success">Logout</a>
+      </div>
     </div>
-  </div>
-</nav>
-<section>
-    <div style="background-color: black; opacity: 0.6;">
-        <h1 style="color: beige; text-align: center; margin-top: 60px;">Welcome </h1>
-        <h3 style="color: beige; text-align: center;">To Federal Bank Online Banking Services</h3>
-    </div>
-    <div class="row" style="margin-left: 100px; height: 300px;">
-        <div class="col-5 me-5 " style="background-color: black; opacity: 0.6;">
-         <h1 style="text-align: center; color: azure; margin-top: 30px;">Deposit</h1>
-         <div style="margin-top: 20px;">
-            <input id="acno" type="text" placeholder="Enter your account number" class="form-control" required><br>
-            <input id="depamt" type="text" placeholder="Enter your Amount" class="form-control" required><br>
-            <button onclick="deposit()" class="btn btn-outline-primary" style="margin-left: 40%;">Submit</button>
-            <div>
-              <p id="result" style="color: white; font-weight: bold;"></p>
-            </div>
-         </div>
-        </div>
-        <div class="col-5" style="background-color: black; opacity: 0.6;">
-             <h1 style="text-align: center; color: azure; margin-top: 30px;">Withdraw</h1>
-         <div style="margin-top: 20px;">
-            <input id="ano" type="text" placeholder="Enter your account number" class="form-control"required><br>
-            <input id="amt" type="text" placeholder="Enter Amount" class="form-control" required><br>
-            <button onclick="withdraw()" class="btn btn-outline-primary" style="margin-left: 40%;">Submit</button>r>
-               <div>
-              <p id="result" style="color: white; font-weight: bold;"></p>
-            </div>
-         </div>
-        </div>
-    </div>
-</section>
-</body>
-<script >
-    function deposit() {
-    const Acno = document.getElementById("acno").value;
-    const Amount = parseFloat(document.getElementById("depamt").value);
+  </nav>
 
-    if (localStorage.getItem(Acno)) {
+  <!-- Welcome -->
+  <section class="text-center mt-5">
+    <div class="box">
+      <h1 class="text-light">Welcome</h1>
+      <h3 class="text-light">To Federal Bank Online Banking Services</h3>
+    </div>
+  </section>
+
+  <section class="row justify-content-center mt-4">
+    <!-- Deposit -->
+    <div class="col-4 box me-3">
+      <h2 class="text-center text-light">Deposit</h2>
+      <input id="acno" type="text" placeholder="Enter account number" class="form-control my-2" required>
+      <input id="depamt" type="text" placeholder="Enter amount" class="form-control my-2" required>
+      <button onclick="deposit()" class="btn btn-outline-primary d-block mx-auto">Submit</button>
+      <p id="depositResult" class="text-light fw-bold mt-3"></p>
+    </div>
+
+    <!-- Withdraw -->
+    <div class="col-4 box">
+      <h2 class="text-center text-light">Withdraw</h2>
+      <input id="ano" type="text" placeholder="Enter account number" class="form-control my-2" required>
+      <input id="amt" type="text" placeholder="Enter amount" class="form-control my-2" required>
+      <button onclick="withdraw()" class="btn btn-outline-primary d-block mx-auto">Submit</button>
+      <p id="withdrawResult" class="text-light fw-bold mt-3"></p>
+    </div>
+  </section>
+
+  <script>
+    function deposit() {
+      const Acno = document.getElementById("acno").value;
+      const Amount = parseFloat(document.getElementById("depamt").value);
+
+      if (localStorage.getItem(Acno)) {
         const acdetails = JSON.parse(localStorage.getItem(Acno));
         acdetails.balance += Amount;
         localStorage.setItem(Acno, JSON.stringify(acdetails));
-        alert("amout deposit successfully")
-        document.getElementById("result").innerHTML = `
-            <p style="color: white; font-weight: bold; text-align:center">
-                Your total balance is ${acdetails.balance}
-            </p>`;
-    } else {
+
+        document.getElementById("depositResult").innerHTML =
+          `Your total balance is ₹${acdetails.balance}`;
+        alert("Amount deposited successfully");
+      } else {
         alert("Invalid account number");
+      }
+
+      document.getElementById("acno").value = "";
+      document.getElementById("depamt").value = "";
     }
-
-    document.getElementById("acno").value = "";
-    document.getElementById("depamt").value = "";
-}
-
-
 
 
 function withdraw() {
@@ -119,22 +91,32 @@ function withdraw() {
     if (localStorage.getItem(Acno)) {
         const amntwithdraw = JSON.parse(localStorage.getItem(Acno));
         alert(`Your current balance is ${amntwithdraw.balance}`);
-        alert(`Withdrawal amount is ${Amount}`);
+        alert(`withdrawal amount is ${Amount}`);
 
         if (Amount <= amntwithdraw.balance) {
             amntwithdraw.balance -= Amount;
             localStorage.setItem(Acno, JSON.stringify(amntwithdraw));
-            alert(`Withdrawal successful. Remaining balance: ${amntwithdraw.balance}`);
-            result.innerHTML = <p class="text-dark mt-3 fw-bold">Your current balance is ${amntwithdraw.balance}</p>;
+
+            alert(`Withdrawal successful! Remaining balance is: ${amntwithdraw.balance}`);
+
+            document.getElementById("result").innerHTML = `
+                <p style="color: white; font-weight: bold; text-align:center">
+                    Your current balance is ${amntwithdraw.balance}
+                </p>`;
         } else {
+           
             alert("Insufficient balance");
         }
     } else {
         alert("Invalid account number");
     }
 
-    document.getElementById("acno").value = "";
+    
+    document.getElementById("ano").value = "";
     document.getElementById("amt").value = "";
 }
 </script>
+
+  </script>
+</body>
 </html>
