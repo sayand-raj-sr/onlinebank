@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="shortcut icon" href="https://t3.ftcdn.net/jpg/04/01/11/40/360_F_401114031_dmYBKsjAZfdv75mGTIKeVMREP3oxHR4l.jpg" type="image/x-icon">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+  <style>
+    body {
+      background: url("https://img.freepik.com/premium-photo/federal-reserve-system-fed-financial-business-background_161452-2415.jpg?w=2000") no-repeat center center fixed;
+      background-size: cover;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .form-box {
+      background: rgba(0, 0, 0, 0.7); /* semi-transparent */
+      padding: 30px;
+      border-radius: 12px;
+      width: 380px;
+      color: white;
+      text-align: center;
+      box-shadow: 0 0 15px rgba(0,0,0,0.8);
+    }
+
+    .form-box img {
+      margin-bottom: 15px;
+    }
+
+    .form-box h3 {
+      color: #0d6efd;
+      margin-bottom: 20px;
+    }
+
+    .form-box input {
+      margin-bottom: 15px;
+    }
+
+    .form-box a {
+      color: #ffc107;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .form-box a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-box">
+    <img src="https://th.bing.com/th/id/R.30f01ca71bc16f7d76b1c70022a598a9?rik=doDEBkMFrbvXrA&riu=http%3a%2f%2fwww.pngall.com%2fwp-content%2fuploads%2f1%2fBank-PNG-File.png&ehk=VB8Y%2bO%2fuciPDXhGsJ%2bhkagdeKWKTITdh%2bXmeHr2dSKA%3d&risl=&pid=ImgRaw&r=0" 
+         height="90px" width="90px" alt="Bank Logo">
+    <h3>My Bank</h3>
+
+    <input id="acno" type="text" placeholder="Account number" class="form-control" required>
+    <input id="pass" type="password" placeholder="Password" class="form-control" required>
+
+    <button onclick="banklogin()" class="btn btn-primary w-100">Login</button>
+
+    <p class="mt-3">
+      <a href="#">Forgot password</a> <span style="color: #aaa;"> | </span> 
+      <a href="./register.html">Sign up</a>
+    </p>
+  </div>
+
+  <script>
+    function banklogin() {
+      const Acno = document.getElementById("acno").value;
+      const Password = document.getElementById("pass").value;
+
+      if (Acno === "" || Password === "") {
+        alert("Please fill in both account number and password");
+        return;
+      }
+
+      if (localStorage.getItem(Acno)) {
+        const data = JSON.parse(localStorage.getItem(Acno));
+
+        if (data.Password === Password) {
+          alert("Login successful");
+          document.getElementById("acno").value = "";
+          document.getElementById("pass").value = "";
+          window.location = "./main.html";
+        } else {
+          alert("Invalid password");
+        }
+      } else {
+        alert("Invalid account number");
+      }
+    }
+  </script>
+</body>
+</html>

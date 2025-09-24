@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register</title>
+  <link rel="shortcut icon" href="https://t3.ftcdn.net/jpg/04/01/11/40/360_F_401114031_dmYBKsjAZfdv75mGTIKeVMREP3oxHR4l.jpg" type="image/x-icon">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
+
+  <style>
+    body {
+      background: url("https://img.freepik.com/premium-photo/federal-reserve-system-fed-financial-business-background_161452-2415.jpg?w=2000") no-repeat center center fixed;
+      background-size: cover;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .form-box {
+      background: rgba(0, 0, 0, 0.7); /* semi-transparent */
+      padding: 30px;
+      border-radius: 12px;
+      width: 380px;
+      color: white;
+      text-align: center;
+      box-shadow: 0 0 15px rgba(0,0,0,0.8);
+    }
+
+    .form-box img {
+      margin-bottom: 15px;
+    }
+
+    .form-box h3 {
+      color: #0d6efd;
+      margin-bottom: 20px;
+    }
+
+    .form-box input {
+      margin-bottom: 15px;
+    }
+
+    .form-box a {
+      color: #ffc107;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .form-box a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="bank row justify-content-center align-items-center" style="margin-top: 100px;">
+    <div class="col-4 form-box">
+      <div class="text-center">
+        <img src="https://th.bing.com/th/id/R.30f01ca71bc16f7d76b1c70022a598a9?rik=doDEBkMFrbvXrA&riu=http%3a%2f%2fwww.pngall.com%2fwp-content%2fuploads%2f1%2fBank-PNG-File.png&ehk=VB8Y%2bO%2fuciPDXhGsJ%2bhkagdeKWKTITdh%2bXmeHr2dSKA%3d&risl=&pid=ImgRaw&r=0" 
+             height="100px" width="100px" alt="">
+        <h3 style="color: #0d6efd;">My Bank</h3>
+      </div>
+      
+      <input id="user" type="text" placeholder="Username" class="form-control mb-3" required>
+      <input id="acno" type="text" placeholder="Account number" class="form-control mb-3" required>
+      <input id="pass" type="password" placeholder="Password" class="form-control mb-3" required>
+      
+      <button onclick="regis()" class="btn btn-primary w-100">Register</button>
+      
+      <p class="mt-3 text-center">
+        Already have an account? <a href="./login.html">Sign in</a>
+      </p>
+    </div>
+  </div>
+
+  <script >
+    function regis() {
+      const reg = {
+        User: document.getElementById("user").value,
+        Acno: document.getElementById("acno").value,
+        Password: document.getElementById("pass").value,
+        balance: 0
+      }
+
+      if (localStorage.getItem(reg.Acno)) {
+        alert("The account already exists");
+      } else {
+        localStorage.setItem(reg.Acno, JSON.stringify(reg));
+        alert("Registration successfully completed");
+        // Clear inputs
+        document.getElementById("user").value = "";
+        document.getElementById("acno").value = "";
+        document.getElementById("pass").value = "";
+        // Redirect to login
+        window.location = "./login.html";
+      }
+    }
+  </script>
+</body>
+</html>
