@@ -73,7 +73,7 @@
         localStorage.setItem(Acno, JSON.stringify(acdetails));
 
         document.getElementById("depositResult").innerHTML =
-          `Your total balance is ₹${acdetails.balance}`;
+          `Your total balance is ${acdetails.balance}`;
         alert("Amount deposited successfully");
       } else {
         alert("Invalid account number");
