@@ -1,122 +1,172 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bank</title>
-  <link rel="shortcut icon" href="https://t3.ftcdn.net/jpg/04/01/11/40/360_F_401114031_dmYBKsjAZfdv75mGTIKeVMREP3oxHR4l.jpg" type="image/x-icon">
+  <title>Federal Bank</title>
+
+  <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="https://t3.ftcdn.net/jpg/04/01/11/40/360_F_401114031_dmYBKsjAZfdv75mGTIKeVMREP3oxHR4l.jpg" type="image/x-icon">
+
   <style>
     body {
-      background: url("https://png.pngtree.com/thumb_back/fw800/background/20230518/pngtree-stack-of-credit-cards-on-a-dark-table-image_2582376.jpg");
+      background:
+        linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+        url("https://png.pngtree.com/thumb_back/fw800/background/20230518/pngtree-stack-of-credit-cards-on-a-dark-table-image_2582376.jpg");
       background-size: cover;
+      background-position: center;
+      min-height: 100vh;
+      color: white;
     }
+
     .box {
-      background-color: rgba(0, 0, 0, 0.6);
-      padding: 20px;
-      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 25px;
+      border-radius: 12px;
+      transition: 0.3s;
+    }
+
+    .box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 28px rgba(255, 255, 255, 0.17);
+    }
+
+    h2, h3, h4 {
+      color: #ffd75a;
+      font-weight: bold;
+    }
+
+    .navbar {
+      background: rgba(0, 0, 0, 0.65) !important;
+      backdrop-filter: blur(6px);
+    }
+
+    .result {
+      font-weight: bold;
+      text-align: center;
+      margin-top: 10px;
+      color: #ffd75a;
+      font-size: 1.1rem;
     }
   </style>
 </head>
+
 <body>
+
   <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar navbar-expand-lg navbar-dark shadow-sm">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Federal Bank</a>
+      <a class="navbar-brand fw-bold" href="#">Federal Bank</a>
+
       <div class="collapse navbar-collapse">
         <ul class="navbar-nav me-auto">
           <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
           <li class="nav-item"><a class="nav-link" href="#">Pay</a></li>
           <li class="nav-item"><a class="nav-link disabled">Invest</a></li>
         </ul>
-        <a href="./index.html" class="btn btn-outline-success">Logout</a>
+
+        <a href="./index.html" class="btn btn-outline-warning fw-bold">Logout</a>
       </div>
     </div>
   </nav>
 
   <!-- Welcome -->
   <section class="text-center mt-5">
-    <div class="box">
-      <h1 class="text-light">Welcome</h1>
-      <h3 class="text-light">To Federal Bank Online Banking Services</h3>
+    <div class="box d-inline-block px-5 py-3">
+      <h2>Welcome</h2>
+      <h4>To Federal Bank Online Banking Services</h4>
     </div>
   </section>
 
-  <section class="row justify-content-center mt-4">
+  <!-- Banking Area -->
+  <section class="row justify-content-center mt-4 px-3">
+
     <!-- Deposit -->
-    <div class="col-4 box me-3">
-      <h2 class="text-center text-light">Deposit</h2>
-      <input id="acno" type="text" placeholder="Enter account number" class="form-control my-2" required>
-      <input id="depamt" type="text" placeholder="Enter amount" class="form-control my-2" required>
-      <button onclick="deposit()" class="btn btn-outline-primary d-block mx-auto">Submit</button>
-      <p id="depositResult" class="text-light fw-bold mt-3"></p>
+    <div class="col-md-4 box me-md-3 mb-4">
+      <h3 class="text-center mb-3">Deposit</h3>
+
+      <input id="acno" type="text" placeholder="Enter account number" class="form-control mb-2" required>
+      <input id="depamt" type="number" placeholder="Enter amount" class="form-control mb-3" required>
+
+      <button onclick="deposit()" class="btn btn-warning fw-bold w-100">Submit</button>
+
+      <p id="depositResult" class="result"></p>
     </div>
 
     <!-- Withdraw -->
-    <div class="col-4 box">
-      <h2 class="text-center text-light">Withdraw</h2>
-      <input id="ano" type="text" placeholder="Enter account number" class="form-control my-2" required>
-      <input id="amt" type="text" placeholder="Enter amount" class="form-control my-2" required>
-      <button onclick="withdraw()" class="btn btn-outline-primary d-block mx-auto">Submit</button>
-      <p id="withdrawResult" class="text-light fw-bold mt-3"></p>
+    <div class="col-md-4 box mb-4">
+      <h3 class="text-center mb-3">Withdraw</h3>
+
+      <input id="ano" type="text" placeholder="Enter account number" class="form-control mb-2" required>
+      <input id="amt" type="number" placeholder="Enter amount" class="form-control mb-3" required>
+
+      <button onclick="withdraw()" class="btn btn-warning fw-bold w-100">Submit</button>
+
+      <p id="withdrawResult" class="result"></p>
     </div>
+
   </section>
 
+  <!-- Script -->
   <script>
+    /* ------------ Deposit ------------ */
     function deposit() {
       const Acno = document.getElementById("acno").value;
       const Amount = parseFloat(document.getElementById("depamt").value);
 
       if (localStorage.getItem(Acno)) {
-        const acdetails = JSON.parse(localStorage.getItem(Acno));
-        acdetails.balance += Amount;
-        localStorage.setItem(Acno, JSON.stringify(acdetails));
+        const acc = JSON.parse(localStorage.getItem(Acno));
+        acc.balance += Amount;
+        localStorage.setItem(Acno, JSON.stringify(acc));
 
         document.getElementById("depositResult").innerHTML =
-          `Your total balance is ${acdetails.balance}`;
-        alert("Amount deposited successfully");
+          `New Balance: ₹${acc.balance}`;
+
+        alert("Amount deposited successfully!");
       } else {
-        alert("Invalid account number");
+        alert("Invalid account number!");
       }
 
       document.getElementById("acno").value = "";
       document.getElementById("depamt").value = "";
     }
 
+    /* ------------ Withdraw ------------ */
+    function withdraw() {
+      const Acno = document.getElementById("ano").value;
+      const Amount = parseFloat(document.getElementById("amt").value);
 
-function withdraw() {
-    const Acno = document.getElementById("ano").value;
-    const Amount = parseFloat(document.getElementById("amt").value);
+      if (localStorage.getItem(Acno)) {
+        const userAcc = JSON.parse(localStorage.getItem(Acno));
 
-    if (localStorage.getItem(Acno)) {
-        const amntwithdraw = JSON.parse(localStorage.getItem(Acno));
-        alert(`Your current balance is ${amntwithdraw.balance}`);
-        alert(`withdrawal amount is ${Amount}`);
+        alert(`Current balance: ₹${userAcc.balance}`);
+        alert(`Withdrawal request: ₹${Amount}`);
 
-        if (Amount <= amntwithdraw.balance) {
-            amntwithdraw.balance -= Amount;
-            localStorage.setItem(Acno, JSON.stringify(amntwithdraw));
+        if (Amount <= userAcc.balance) {
+          userAcc.balance -= Amount;
+          localStorage.setItem(Acno, JSON.stringify(userAcc));
 
-            alert(`Withdrawal successful! Remaining balance is: ${amntwithdraw.balance}`);
+          document.getElementById("withdrawResult").innerHTML =
+            `Remaining Balance: ₹${userAcc.balance}`;
 
-            document.getElementById("result").innerHTML = `
-                <p style="color: white; font-weight: bold; text-align:center">
-                    Your current balance is ${amntwithdraw.balance}
-                </p>`;
+          alert("Withdrawal successful!");
         } else {
-           
-            alert("Insufficient balance");
+          alert("Insufficient balance!");
         }
-    } else {
-        alert("Invalid account number");
+      } else {
+        alert("Invalid account number!");
+      }
+
+      document.getElementById("ano").value = "";
+      document.getElementById("amt").value = "";
     }
-
-    
-    document.getElementById("ano").value = "";
-    document.getElementById("amt").value = "";
-}
-</script>
-
   </script>
+
 </body>
 </html>
